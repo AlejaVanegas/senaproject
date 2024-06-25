@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Montserrat:wght@400&display=swap"
+        rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Facturas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-light bg-light">
+        <div class="container-fluid text-center mt-4 mb-4">
+		<button type="button" class="btn btn-info">
+			<a href="home.html" class="btn-link">Inicio</a>
+		</button>
+		<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+        <button type="button" class="btn btn-outline-info">
+            <a href="usuarios.html" class="btn-link">Usuarios</a>
+        </button>
+		<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+        <button type="button" class="btn btn-outline-info">
+            <a href="productos.html" class="btn-link">Productos</a>
+        </button>
+		<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+        <button type="button" class="btn btn-outline-info">
+            <a href="facturas.html" class="btn-link">Facturas</a>
+        </button>
+		<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+        <button type="button" class="btn btn-outline-info">
+            <a href="envios.html" class="btn-link">Envíos</a>
+        </button>
+		<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+		<button type="button" class="btn btn-outline-info">
+            <a href="ventas.html" class="btn-link">Ventas</a>
+        </button>
+        </div>
+    </nav>
+    <h1>Gestión de Facturas</h1>
+	
+	<div class="form-group">
+		<form id="facturasForm">
+			<label for="IdFactura">ID Factura:</label>
+			<input class="border border-info" type="number" id="IdFactura" name="IdFactura" required>
+			<label for="IdU">ID Usuario:</label>
+			<input class="border border-info" type="text" id="IdU" name="IdU" required>
+			<label for="IdProducto">ID Producto:</label>
+			<input class="border border-info" type="text" id="IdProducto" name="IdProducto" required>
+			<label for="Cantidad">Cantidad:</label>
+			<input class="border border-info" type="number" id="Cantidad" name="Cantidad" required>
+			<label for="ValorTotal">Valor Total:</label>
+			<input class="border border-info" type="number" id="ValorTotal" name="ValorTotal" required>
+		
+		<div class="text-center mt-4 mb-4">
+			<button type="submit" class="btn btn-outline-info">Registrar</button>
+			<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+			<button type="button" class="btn btn-outline-info" onclick="fetchFacturas()">Mostrar</button>
+		</div>
+		</form>
+	</form>
+	
+
+	<table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>ID Factura</th>
+                <th>ID Usuario</th>
+                <th>ID Producto</th>
+                <th>Cantidad</th>
+                <th>Valor Total</th>
+				<th>Acción</th>
+            </tr>
+        </thead>
+    <tbody id="facturasTableBody">
+    
+    </tbody>
+    </table>
+	
+	<div class="modal fade" id="modifyFacturasModal" tabindex="-1" role="dialog" aria-labelledby="modifyFacturasModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modifyFacturasModalLabel">Modificar Factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="modifyFacturasForm">
+                    <input type="hidden" id="modifyFacturasIdFactura">
+                    <div class="form-group">
+                        <label for="modifyFacturasIdU" class="form-label">ID de Usuario</label>
+                        <input type="text" class="form-control" id="modifyFacturasIdU">
+                    </div>
+                    <div class="form-group">
+                        <label for="modifyFacturasIdProducto" class="form-label">ID de Producto</label>
+                        <input type="text" class="form-control" id="modifyFacturasIdProducto">
+                    </div>
+                    <div class="form-group">
+                        <label for="modifyFacturasCantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="modifyFacturasCantidad">
+                    </div>
+                    <div class="form-group">
+                        <label for="modifyFacturasValorTotal" class="form-label">Valor Total</label>
+                        <input type="number" class="form-control" id="modifyFacturasValorTotal">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="saveFacturasChanges()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+	<footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Brillo festivo. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+    </footer>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j5xqD/cOxPOs8lLTo9x0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+	
+</body>
+</html>

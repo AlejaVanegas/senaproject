@@ -1,0 +1,149 @@
+body {
+	color: #000000;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #FFFFFF;
+	margin-left: 15px;
+}
+
+.container {
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.btn a {
+    color: inherit;
+    text-decoration: none;
+}
+		
+.btn a:hover {
+    color: inherit;
+}
+	
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+body {
+    background-color: #F1E3FF; 
+    margin: 0; 
+    padding: 0; 
+}
+
+.banner {
+    background-image: url('https://www.pngkey.com/png/full/13-135463_party-vector-background-st-party-popper-background.png');
+    background-size: cover;
+    background-position: center;
+    height: 250px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+    text-align: center; 
+    padding: 20px; 
+}
+
+    .banner h1 {
+        font-weight: bold;
+        margin-bottom: 20px; 
+    }
+
+    .banner h3 {
+        font-weight: bold;
+		margin-top: 20px;
+    }
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px; 
+	border: #585858;
+}
+
+thead {
+    background-color: #A68AFF; 
+    color: 585858; 
+}
+
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2; 
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; 
+}
+
+
+td, th {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #585858; 
+}
+
+
+th {
+    border-top: 1px solid #585858; 
+}
+
+form {
+    margin: 20px; 
+    padding: 20px; 
+    border: 1px solid #585858; 
+    border-radius: 5px; 
+}
+
+ footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .footer-links li {
+            margin: 0 10px;
+        }
+        .footer-links li a {
+            color: #fff;
+            text-decoration: none;
+        }

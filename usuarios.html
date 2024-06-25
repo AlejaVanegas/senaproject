@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Montserrat:wght@400&display=swap"
+        rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Usuarios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid text-center mt-4 mb-4">
+			<button type="button" class="btn btn-info"><a href="home.html" class="btn-link">Inicio</a></button>
+			<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+            <button type="button" class="btn btn-outline-info"><a href="usuarios.html" class="btn-link">Usuarios</a></button>
+			<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+            <button type="button" class="btn btn-outline-info"><a href="productos.html" class="btn-link">Productos</a></button>
+			<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+            <button type="button" class="btn btn-outline-info"><a href="facturas.html" class="btn-link">Facturas</a></button>
+            <img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+			<button type="button" class="btn btn-outline-info"><a href="envios.html" class="btn-link">Envíos</a></button>
+            <img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+			<button type="button" class="btn btn-outline-info"><a href="ventas.html" class="btn-link">Ventas</a></button>
+        </div>
+    </nav>
+    <h2>Gestión de Usuarios</h2>
+	
+		<div class="form-group">
+			<form id="userForm">
+				<label for="idU">ID Usuario:</label>
+				<input class="border border-info" type="text" id="idU" name="idU" required>
+				<label for="nombre">Nombre:</label>
+				<input class="border border-info" type="text" id="nombre" name="nombre" required>
+				<label for="apellido">Apellido:</label>
+				<input class="border border-info" type="text" id="apellido" name="apellido" required>
+				<label for="tipoMembresia">Tipo de Membresía:</label>
+				<input class="border border-info" type="text" id="tipoMembresia" name="tipoMembresia" required>
+				<label for="fechaInscripcion">Fecha de Inscripción:</label>
+				<input class="border border-info" type="datetime-local" id="fechaInscripcion" name="fechaInscripcion" required>
+				<label for="contrasena">Contraseña:</label>
+				<input class="border border-info" type="password" id="contrasena" name="contrasena" required>
+				<label for="correo">Correo:</label>
+				<input class="border border-info" type="email" id="correo" name="correo" required>
+				<div class="text-center mt-4 mb-4">
+					<button type="submit" class="btn btn-outline-info">Registrar</button>
+					<img src="C:\Users\Core I5\OneDrive\Desktop\SenaProyecto\star.png" width="30" height="30" alt="">
+					<button type="button" class="btn btn-outline-info" onclick="fetchUsuarios()"> Mostrar</button>
+				</div>
+			</form>
+		</div>
+		
+		<div class="modal fade" id="modifyUserModal" tabindex="-1" aria-labelledby="modifyUserModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modifyUserModalLabel">Modificar Usuario</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+				<div class="modal-body">
+					<form id="modifyUserForm">
+						<input type="hidden" id="modifyUserId">
+							<div class="mb-3">
+								<label for="modifyUserName" class="form-label">Nombre</label>
+								<input type="text" class="form-control" id="modifyUserName">
+							</div>
+							<div class="mb-3">
+								<label for="modifyUserLastName" class="form-label">Apellido</label>
+								<input type="text" class="form-control" id="modifyUserLastName">
+							</div>
+							<div class="mb-3">
+								<label for="modifyUserMembership" class="form-label">Tipo de Membresía</label>
+								<input type="text" class="form-control" id="modifyUserMembership">
+							</div>
+							<div class="mb-3">
+								<label for="modifyUserEmail" class="form-label">Correo</label>
+								<input type="email" class="form-control" id="modifyUserEmail">
+							</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" onclick="saveUserChanges()">Guardar Cambios</button>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+    <div id="userList"></div>
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>ID Usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tipo Membresía</th>
+                <th>Fecha Inscripción</th>
+                <th>Correo</th>
+				<th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="usuariosTableBody">
+        </tbody>
+    </table>
+	
+	<footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Brillo festivo. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+    </footer>
+	
+    
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j5xqD/cOxPOs8lLTo9x0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<script src="script.js"></script>
+</body>
+</html>
